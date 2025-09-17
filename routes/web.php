@@ -33,8 +33,4 @@ Route::get('/kontak', [KontakController::class, 'index'])->name('kontak.index');
 Route::get('/karir', [KarirController::class, 'index'])->name('karir.index');
 
 Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
-Route::get('/berita/detail', [BeritaController::class, 'detailBerita'])->name('berita.detail');
-
-
-
-
+Route::get('/berita/{slug}', [BeritaController::class, 'detail'])->name('berita.detail');
