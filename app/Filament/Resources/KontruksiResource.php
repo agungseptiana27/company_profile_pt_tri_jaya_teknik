@@ -18,10 +18,13 @@ class KontruksiResource extends Resource
     protected static ?string $model = Kontruksi::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
-    protected static ?string $navigationLabel = 'Sertifikat';
     protected static ?string $pluralLabel = 'Sertifikat';
     protected static ?string $modelLabel = 'Sertifikat';
-
+    
+    protected static ?string $navigationLabel = 'Sertifikasi Kontruksi';
+    protected static ?string $navigationGroup = 'Profil';
+    protected static ?int $navigationSort = 2;
+    
     public static function form(Form $form): Form
     {
         return $form

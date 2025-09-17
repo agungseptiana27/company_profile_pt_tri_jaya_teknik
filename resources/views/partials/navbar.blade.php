@@ -33,6 +33,8 @@
                                     class=" block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sertifikasi Kontruksi</a>
                                 <a href="{{ route('profil.iso') }}"
                                     class=" block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sertifikasi ISO</a>
+                                <a href="{{ route('profil.personal') }}"
+                                    class=" block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sertifikasi Personal</a>
                             </div>
                         </div>
                     </div>
@@ -50,7 +52,13 @@
                         <div class="absolute left-0 pt-2 w-40 invisible group-hover:visible">
                             <div class="link bg-white rounded-md shadow-lg py-1">
                                 <a href="{{ route('produk.fabrication') }}"
-                                    class=" block px-4 py-2 text-sm text-[#0D3300]-700 hover:bg-gray-100">Fabrication</a>
+                                    class="block px-4 py-2 text-sm 
+                                            {{ request()->routeIs('produk.fabrication') 
+                                                ? 'font-semibold text-[#0D3300] bg-gray-100' 
+                                                : 'text-[#0D3300] hover:bg-gray-100' }}">
+                                        Fabrication
+                                </a>
+
                                 <a href="{{ route('produk.jig') }}"
                                     class=" block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Jig</a>
                                 <a href="{{ route('produk.machining') }}"

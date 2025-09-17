@@ -12,9 +12,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+
+// Profil
 Route::get('/profil/sejarah', [ProfilController::class, 'sejarah'])->name('profil.sejarah');
 Route::get('/profil/kontruksi', [ProfilController::class, 'kontruksi'])->name('profil.kontruksi');
 Route::get('/profil/iso', [ProfilController::class, 'iso'])->name('profil.iso');
+Route::get('/profil/personal', [ProfilController::class, 'personal'])->name('profil.personal');
 
 Route::get('/produk/fabrication', [ProducController::class, 'fabrication'])->name('produk.fabrication');
 Route::get('/produk/jig', [ProducController::class, 'jig'])->name('produk.jig');

@@ -18,9 +18,12 @@ class CompanyProfileResource extends Resource
     protected static ?string $model = CompanyProfile::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
-    protected static ?string $navigationLabel = 'Profil Perusahaan';
     protected static ?string $pluralLabel = 'Profil Perusahaan';
     protected static ?string $modelLabel = 'Profil Perusahaan';
+    
+    protected static ?string $navigationLabel = 'Profil Perusahaan';
+    protected static ?string $navigationGroup = 'Profil';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
