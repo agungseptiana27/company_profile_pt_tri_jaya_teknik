@@ -1,56 +1,63 @@
 @extends('layouts.app')
 
-@section('title', 'Pelanggan |' .config('app.name'))
+@section('title', 'Pelanggan |' . config('app.name'))
 
 @section('content')
-    <section class="py-12">
-        <div class="max-w-6xl mx-auto px-4">
-            <!-- Judul -->
-            <h2 class="text-2xl md:text-3xl font-bold text-center text-[#0D3300] mb-8">
+<section class="py-12">
+    <div class="max-w-6xl mx-auto px-4">
+        <!-- Judul -->
+        <h2 class="text-2xl md:text-3xl font-bold text-center text-[#0D3300] mb-8">
             Pelanggan PT Tri Jaya Teknik Karawang
-            </h2>
+        </h2>
 
-            <!-- Tabel -->
-            <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+        <!-- Tabel -->
+        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
             <table class="w-full border-collapse">
                 <thead>
-                <tr class="bg-gradient-to-b from-[#269900] to-[#0D3300] text-white text-left">
-                    <th class="px-4 py-3 w-16">No</th>
-                    <th class="px-4 py-3">Nama Perusahaan</th>
-                    <th class="px-4 py-3">Main Product</th>
-                </tr>
+                    <tr class="bg-gradient-to-b from-[#269900] to-[#0D3300] text-white text-left">
+                        <th class="px-4 py-3 w-16">No</th>
+                        <th class="px-4 py-3">Nama Perusahaan</th>
+                        <th class="px-4 py-3">Main Product</th>
+                    </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
-                <tr>
-                    <td class="px-4 py-3">1</td>
-                    <td class="px-4 py-3">PT ACHIKIKI AUTO PART INDONESIA</td>
-                    <td class="px-4 py-3">TRANSMISION GEAR 4R & 2R1</td>
-                </tr>
-                <tr>
-                    <td class="px-4 py-3">2</td>
-                    <td class="px-4 py-3">PT BERDIKARI METAL & ENGINEERING</td>
-                    <td class="px-4 py-3">MOTOR CYCLE PART</td>
-                </tr>
-                <tr>
-                    <td class="px-4 py-3">3</td>
-                    <td class="px-4 py-3">PT FUTABA INDUSTRIAL INDONESIA</td>
-                    <td class="px-4 py-3">SUSPENSION PART</td>
-                </tr>
-                <tr>
-                    <td class="px-4 py-3">4</td>
-                    <td class="px-4 py-3">PT G-TIM</td>
-                    <td class="px-4 py-3">BODY PART 4R</td>
-                </tr>
-                <tr>
-                    <td class="px-4 py-3">5</td>
-                    <td class="px-4 py-3">PT KANETA INDONESIA</td>
-                    <td class="px-4 py-3">TRANSMISION PART</td>
-                </tr>
-                <!-- Tambahkan baris lain sesuai kebutuhan -->
+                    @foreach ($customers as $i => $customer)
+                    <tr>
+                        <td class="px-4 py-3">
+                            {{-- nomor urut dinamis --}}
+                            {{ $customers instanceof \Illuminate\Pagination\LengthAwarePaginator
+                                ? $customers->firstItem() + $i
+                                : $i + 1 }}
+                        </td>
+                        <td class="px-4 py-3">{{ $customer->company_name }}</td>
+                        <td class="px-4 py-3">{{ $customer->main_product }}</td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
+        </div>
+
+        <!-- Dropdown + Pagination -->
+        @if ($customers instanceof \Illuminate\Pagination\LengthAwarePaginator)
+        <div class="mt-4 flex flex-col md:flex-row items-center justify-between">
+            <!-- Dropdown kiri -->
+            <form method="GET" action="{{ route('pelanggan.index') }}" class="mb-2 md:mb-0">
+                <label for="per_page" class="mr-2 font-medium">Tampilkan:</label>
+                <select name="per_page" id="per_page" onchange="this.form.submit()" class="border rounded px-2 py-1">
+                    <option value="5" {{ $perPage == 5 ? 'selected' : '' }}>5</option>
+                    <option value="10" {{ $perPage == 10 ? 'selected' : '' }}>10</option>
+                    <option value="25" {{ $perPage == 25 ? 'selected' : '' }}>25</option>
+                    <option value="50" {{ $perPage == 50 ? 'selected' : '' }}>50</option>
+                    <option value="all" {{ $perPage == 'all' ? 'selected' : '' }}>All</option>
+                </select>
+            </form>
+
+            <!-- Pagination kanan -->
+            <div>
+                {{ $customers->links() }}
             </div>
         </div>
-    </section>
-
+        @endif
+    </div>
+</section>
 @endsection
