@@ -11,26 +11,27 @@
         </h2>
 
         <!-- Tabel -->
-        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
-            <table class="w-full border-collapse">
+        <div class="overflow-x-auto bg-white shadow-lg rounded-xl">
+            <table class="w-full border-collapse text-left">
                 <thead>
-                    <tr class="bg-gradient-to-b from-[#269900] to-[#0D3300] text-white text-left">
+                    <tr class="bg-gradient-to-b from-[#269900] to-[#0D3300] text-white">
                         <th class="px-4 py-3 w-16">No</th>
+                        <th class="px-4 py-3">Logo</th>
                         <th class="px-4 py-3">Nama Perusahaan</th>
-                        <th class="px-4 py-3">Main Product</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
-                    @foreach ($customers as $i => $customer)
-                    <tr>
+                    @foreach($customers as $index => $customer)
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-4 py-3">{{ $index + 1 }}</td>
                         <td class="px-4 py-3">
-                            {{-- nomor urut dinamis --}}
-                            {{ $customers instanceof \Illuminate\Pagination\LengthAwarePaginator
-                                ? $customers->firstItem() + $i
-                                : $i + 1 }}
+                            @if($customer->image)
+                            <img src="{{ asset('storage/' . $customer->logo) }}" alt="{{ $customer->company_name }}"
+                                class="w-16 h-16 object-cover cursor-pointer"
+                                @click="open = true; imgSrc='{{ asset('storage/' . $customer->logo) }}'">
+                            @endif
                         </td>
-                        <td class="px-4 py-3">{{ $customer->company_name }}</td>
-                        <td class="px-4 py-3">{{ $customer->main_product }}</td>
+                        <td class="px-4 py-3 font-medium">{{ $customer->company_name }}</td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CustomerResource\Pages;
-use App\Filament\Resources\CustomerResource\RelationManagers;
-use App\Models\Customer;
+use App\Filament\Resources\BannerResource\Pages;
+use App\Filament\Resources\BannerResource\RelationManagers;
+use App\Models\Banner;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,27 +13,22 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CustomerResource extends Resource
+class BannerResource extends Resource
 {
-    protected static ?string $model = Customer::class;
+    protected static ?string $model = Banner::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
-    protected static ?string $navigationLabel = 'Pelanggan';
-    protected static ?string $pluralModelLabel = 'Pelanggan';
-    protected static ?string $navigationGroup = 'Pelanggan';
-    protected static ?int $navigationSort = 4;
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\FileUpload::make('logo')
-                    ->label('Logo')
-                    ->default(null),
-                Forms\Components\TextInput::make('company_name')
-                    ->label('Nama Perusahaan')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\FileUpload::make('gambar')
+                    ->image()
+                    ->directory('banner')
+                    ->required(),
+                Forms\Components\Toggle::make('status')
+                    ->required(),
             ]);
     }
 
@@ -41,19 +36,10 @@ class CustomerResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id')
-                    ->label('No')
-                    ->sortable(),
-
-                Tables\Columns\ImageColumn::make('logo')
-                    ->label('logo')
+                Tables\Columns\ImageColumn::make('gambar')
                     ->searchable(),
-
-                Tables\Columns\TextColumn::make('company_name')
-                    ->label('Nama Perusahaan')
-                    ->searchable(),
-
-                
+                Tables\Columns\IconColumn::make('status')
+                    ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -63,7 +49,6 @@ class CustomerResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->defaultSort('id')
             ->filters([
                 //
             ])
@@ -89,9 +74,9 @@ class CustomerResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCustomers::route('/'),
-            'create' => Pages\CreateCustomer::route('/create'),
-            'edit' => Pages\EditCustomer::route('/{record}/edit'),
+            'index' => Pages\ListBanners::route('/'),
+            'create' => Pages\CreateBanner::route('/create'),
+            'edit' => Pages\EditBanner::route('/{record}/edit'),
         ];
     }
 }

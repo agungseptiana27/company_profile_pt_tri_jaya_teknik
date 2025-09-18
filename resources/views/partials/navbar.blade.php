@@ -1,12 +1,19 @@
-<nav id="navbar" class="fixed w-full z-10 transition-transform duration-300 bg-gradient-to-b from-[#D9FFCC] to-white" style="transition: all 0.3s ease-in-out">
+<nav id="navbar" class="fixed w-full z-10 transition-transform duration-300 bg-gradient-to-b from-[#D9FFCC] to-white"
+    style="transition: all 0.3s ease-in-out">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div class="flex justify-between h-16">
             <!-- Logo -->
             <div class="flex-shrink-0 flex items-center">
-                <img class="h-8 w-auto" src="{{ asset('images/logo/logo.png') }}" alt="Logo">
+                <a href="{{ route('home') }}">
+                    <img class="h-8 w-auto" src="{{ asset('images/logo/logo.png') }}" alt="Logo">
+                </a>
+
 
                 <div class="flex flex-col ml-3">
-                    <h1 class="text-[#0D3300] font-bold">PT Tri Jaya Teknik Karawang</h1>
+                    <a href="{{ route('home') }}">
+                        <h1 class="text-[#0D3300] font-bold">PT Tri Jaya Teknik Karawang</h1>
+                    </a>
+
                 </div>
             </div>
             <!-- Desktop Navigation -->
@@ -28,13 +35,16 @@
                         <div class="absolute left-0 pt-2 w-40 invisible group-hover:visible">
                             <div class="link bg-white rounded-md shadow-lg py-1">
                                 <a href="{{ route('profil.sejarah') }}"
-                                    class=" block px-4 py-2 text-sm text-[#0D3300]-700 hover:bg-gray-100">Sejarah Perusahaan</a>
+                                    class=" block px-4 py-2 text-sm text-[#0D3300]-700 hover:bg-gray-100">Sejarah
+                                    Perusahaan</a>
                                 <a href="{{ route('profil.kontruksi') }}"
-                                    class=" block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sertifikasi Kontruksi</a>
+                                    class=" block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sertifikasi
+                                    Kontruksi</a>
                                 <a href="{{ route('profil.iso') }}"
                                     class=" block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sertifikasi ISO</a>
                                 <a href="{{ route('profil.personal') }}"
-                                    class=" block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sertifikasi Personal</a>
+                                    class=" block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sertifikasi
+                                    Personal</a>
                             </div>
                         </div>
                     </div>
@@ -51,12 +61,11 @@
                         <!-- Pake padding biar ga ilang -->
                         <div class="absolute left-0 pt-2 w-40 invisible group-hover:visible">
                             <div class="link bg-white rounded-md shadow-lg py-1">
-                                <a href="{{ route('produk.fabrication') }}"
-                                    class="block px-4 py-2 text-sm 
+                                <a href="{{ route('produk.fabrication') }}" class="block px-4 py-2 text-sm 
                                             {{ request()->routeIs('produk.fabrication') 
                                                 ? 'font-semibold text-[#0D3300] bg-gray-100' 
                                                 : 'text-[#0D3300] hover:bg-gray-100' }}">
-                                        Fabrication
+                                    Fabrication
                                 </a>
 
                                 <a href="{{ route('produk.jig') }}"
@@ -74,7 +83,7 @@
                     </div>
                     <a href="{{ route('pelanggan.index') }}"
                         class="link text-[#0D3300] hover:text-[#118840] px-3 py-2 rounded-md text-sm font-medium">Pelanggan</a>
-                    
+
                     <a href="{{ route('kontak.index') }}"
                         class="link text-[#0D3300] hover:text-[#118840] px-3 py-2 rounded-md text-sm font-medium">Kontak</a>
                     <a href="{{ route('karir.index') }}"
@@ -156,26 +165,71 @@
     </div>
 
     <!-- Mobile menu (HANYA SATU, dengan background yang proper) -->
+    <!-- Mobile menu -->
     <div class="md:hidden hidden bg-white" id="mobile-menu">
-        <!-- Navigation Links -->
         <div class="px-2 pt-2 pb-3 space-y-1">
-            <a href=""
-                class="text-gray-800 hover:text-gray-500 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Beranda</a>
-            <a href="}"
-                class="text-gray-800 hover:text-gray-500 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Pelanggan</a>
-            <a href=""
-                class="text-gray-800 hover:text-gray-500 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Kontak</a>
-            <a href=""
-                class="text-gray-800 hover:text-gray-500 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Karir</a>
-            <a href=""
-                class="text-gray-800 hover:text-gray-500 hover:bg-gray-200 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Berita</a>
+            <a href="{{ route('home') }}"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-200">Beranda</a>
+            <a href="{{ route('pelanggan.index') }}"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-200">Pelanggan</a>
+
+            <!-- Profil Dropdown -->
+            <div>
+                <button id="mobile-profile-dropdown-btn" type="button"
+                    class="w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-200">
+                    Profil
+                    <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="mobile-profile-dropdown-menu" class="hidden mt-1 space-y-1 pl-4">
+                    <a href="{{ route('profil.sejarah') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sejarah Perusahaan</a>
+                    <a href="{{ route('profil.kontruksi') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sertifikasi Kontruksi</a>
+                    <a href="{{ route('profil.iso') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sertifikasi ISO</a>
+                    <a href="{{ route('profil.personal') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sertifikasi Personal</a>
+                </div>
+            </div>
+
+            <!-- Produk Dropdown -->
+            <div>
+                <button id="mobile-product-dropdown-btn" type="button"
+                    class="w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-200">
+                    Produk
+                    <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="mobile-product-dropdown-menu" class="hidden mt-1 space-y-1 pl-4">
+                    <a href="{{ route('produk.fabrication') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Fabrication</a>
+                    <a href="{{ route('produk.jig') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Jig</a>
+                    <a href="{{ route('produk.machining') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Machining</a>
+                    <a href="{{ route('produk.stamping') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Stamping</a>
+                    <a href="{{ route('produk.spm') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">SPM</a>
+                    <a href="{{ route('produk.civil') }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Civil</a>
+                </div>
+            </div>
+
+            <a href="{{ route('kontak.index') }}"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-200">Kontak</a>
+            <a href="{{ route('karir.index') }}"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-200">Karir</a>
+            <a href="{{ route('berita.index') }}"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-200">Berita</a>
         </div>
 
         <!-- User Section -->
-        <div class="pt-4 pb-3">
-            <!-- Jika user sudah login (contoh dengan user) -->
+        <!-- <div class="pt-4 pb-3 border-t border-gray-200">
             @auth
-            <!-- User is authenticated, show profile info with dropdown -->
             <div class="flex items-center px-5 relative">
                 <div class="flex-shrink-0">
                     <img class="h-10 w-10 rounded-full object-cover"
@@ -183,7 +237,7 @@
                         alt="Profile Photo">
                 </div>
                 <div class="ml-3">
-                    <button id="mobile-profile-dropdown-btn" type="button"
+                    <button id="mobile-user-dropdown-btn" type="button"
                         class="flex items-center text-base font-medium text-gray-800 focus:outline-none">
                         {{ auth()->user()->name }}
                         <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" stroke-width="2"
@@ -191,13 +245,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <!-- Dropdown menu -->
-                    <div id="mobile-profile-dropdown-menu"
-                        class="hidden absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
-                        <a href=""
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                        {{-- <a href="#"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a> --}}
+                    <div id="mobile-user-dropdown-menu" class="hidden mt-1 w-48 bg-white rounded-md shadow-lg py-1">
                         <form method="POST" action="">
                             @csrf
                             <button type="submit"
@@ -209,17 +257,16 @@
                 </div>
             </div>
             @else
-            <div class="guest-user">
-                <div class="flex flex-col space-y-2 px-5">
-                    <a href=""
-                        class="block px-4 py-2 text-base font-medium text-gray-800 border border-gray-500 rounded-md hover:text-[#118840] hover:border-[#118840] text-center transition-colors duration-200">Masuk</a>
-                    <a href=""
-                        class="block px-4 py-2 text-base font-medium text-[#0D3300] bg-[#118840] hover:bg-green-900 rounded-md text-center transition-colors duration-200">Daftar</a>
-                </div>
+            <div class="px-5 flex flex-col space-y-2">
+                <a href=""
+                    class="block px-4 py-2 text-base font-medium text-gray-800 border border-gray-500 rounded-md hover:text-[#118840] hover:border-[#118840] text-center">Masuk</a>
+                <a href=""
+                    class="block px-4 py-2 text-base font-medium text-[#0D3300] bg-[#118840] hover:bg-green-900 rounded-md text-center">Daftar</a>
             </div>
             @endauth
-        </div>
+        </div> -->
     </div>
+
 </nav>
 
 <script>
@@ -489,5 +536,29 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Mobile dropdown toggles
+    function setupMobileDropdown(buttonId, menuId) {
+        const btn = document.getElementById(buttonId);
+        const menu = document.getElementById(menuId);
+
+        if (btn && menu) {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation(); // penting agar klik tidak menutup menu
+                menu.classList.toggle('hidden');
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!btn.contains(event.target) && !menu.contains(event.target)) {
+                    menu.classList.add('hidden');
+                }
+            });
+        }
+    }
+
+    // setupMobileDropdown('mobile-profile-dropdown-btn', 'mobile-profile-dropdown-menu');
+    setupMobileDropdown('mobile-product-dropdown-btn', 'mobile-product-dropdown-menu');
+    setupMobileDropdown('mobile-user-dropdown-btn', 'mobile-user-dropdown-menu');
+
 });
 </script>
