@@ -11,7 +11,6 @@ class SertifPersonal extends Model
 
     protected $fillable = [
         'nama_pekerja',
-        'jabatan',
-        'image',
+        'keahlian',
     ];
 }

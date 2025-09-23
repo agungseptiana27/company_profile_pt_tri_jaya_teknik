@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('sertif_personals', function (Blueprint $table) {
             $table->id();
             $table->string('nama_pekerja');
-            $table->string('jabatan');
-            $table->string('image');
+            $table->string('keahlian');
             $table->timestamps();
         });
     }

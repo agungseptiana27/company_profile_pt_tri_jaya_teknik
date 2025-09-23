@@ -36,12 +36,9 @@ class SertifPersonalResource extends Resource
                 TextInput::make('nama_pekerja')
                 ->required()
                 ->label('Nama Pekerja'),
-                TextInput::make('jabatan')
+                TextInput::make('keahlian')
                     ->required()
-                    ->label('Jabatan'),
-                FileUpload::make('image')
-                    ->image()
-                    ->label('Licence')
+                    ->label('Keahlian'),
             ]);
     }
 
@@ -50,9 +47,8 @@ class SertifPersonalResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')->sortable(),
-                ImageColumn::make('image')->label('Foto'),
                 TextColumn::make('nama_pekerja')->sortable()->searchable(),
-                TextColumn::make('jabatan')->sortable()->searchable(),
+                TextColumn::make('keahlian')->sortable()->searchable(),
             ])
             ->filters([
                 //

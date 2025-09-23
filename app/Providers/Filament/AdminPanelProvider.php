@@ -35,9 +35,10 @@ class AdminPanelProvider extends PanelProvider
             ->font('Poppins')
             ->brandLogo(asset('images/logo/logo_tjtk.png'))
             ->brandName("Tri Jaya Teknik Karawang")
+            // ->darkModeBrandLogo('images/logo/logo_tjtk_dark.png')
             ->brandLogoHeight('2rem')
-            ->sidebarCollapsibleOnDesktop() // aktifkan collapse di desktop
-            ->sidebarFullyCollapsibleOnDesktop() // collapse penuh jadi icon doang
+            ->sidebarCollapsibleOnDesktop()
+            ->sidebarFullyCollapsibleOnDesktop()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
