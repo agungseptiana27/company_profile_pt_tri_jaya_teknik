@@ -8,7 +8,7 @@
         imgSrc: '', 
         search: '', 
         sort: 'asc', 
-        jabatan: '', 
+        keahlian: '', 
         items: {{ json_encode($sertifPersonal) }},
         get filteredItems() {
             let filtered = this.items;
@@ -17,13 +17,13 @@
             if (this.search) {
                 filtered = filtered.filter(i => 
                     i.nama_pekerja.toLowerCase().includes(this.search.toLowerCase()) ||
-                    i.jabatan.toLowerCase().includes(this.search.toLowerCase())
+                    i.keahlian.toLowerCase().includes(this.search.toLowerCase())
                 );
             }
 
-            // filter berdasarkan jabatan
-            if (this.jabatan) {
-                filtered = filtered.filter(i => i.jabatan === this.jabatan);
+            // filter berdasarkan keahlian
+            if (this.keahlian) {
+                filtered = filtered.filter(i => i.keahlian === this.keahlian);
             }
 
             // sorting abjad
@@ -45,7 +45,7 @@
         <!-- Filter & Search -->
         <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-3">
             <!-- Search -->
-            <input type="text" placeholder="Cari nama atau jabatan..."
+            <input type="text" placeholder="Cari nama atau keahlian..."
                 class="w-full md:w-1/3 border px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-green-300"
                 x-model="search">
 
@@ -56,8 +56,8 @@
                     <option value="desc">Nama (Z-A)</option>
                 </select>
 
-                <!-- Filter Jabatan -->
-                <select x-model="jabatan" class="border px-3 py-2 rounded-lg shadow-sm">
+                <!-- Filter Keahlian -->
+                <select x-model="keahlian" class="border px-3 py-2 rounded-lg shadow-sm">
                     <option value="">Semua Keahlian</option>
                     @foreach($sertifPersonal->pluck('keahlian')->unique() as $jab)
                     <option value="{{ $jab }}">{{ $jab }}</option>
@@ -83,7 +83,7 @@
                             <td class="px-4 py-3" x-text="index + 1"></td>
 
                             <td class="px-4 py-3 font-medium" x-text="personal.nama_pekerja"></td>
-                            <td class="px-4 py-3" x-text="personal.jabatan"></td>
+                            <td class="px-4 py-3" x-text="personal.keahlian"></td>
                             <!-- <td class="px-4 py-3">
                                 <template x-if="personal.image">
                                     <img :src="'/storage/' + personal.image" :alt="personal.nama_pekerja"
