@@ -50,6 +50,10 @@
         box-sizing: border-box;
     }
 
+    [x-cloak] {
+        display: none !important;
+    }
+
     html,
     body {
         overflow-x: hidden;

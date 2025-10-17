@@ -29,11 +29,9 @@ class FabricationResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('fabrication_category_id')
-                    ->relationship('category', 'name')
-                    ->required(),
+                    ->relationship('category', 'name'),
 
                 Forms\Components\TextInput::make('title')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('material')
                     ->maxLength(255)
@@ -91,7 +89,8 @@ class FabricationResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array

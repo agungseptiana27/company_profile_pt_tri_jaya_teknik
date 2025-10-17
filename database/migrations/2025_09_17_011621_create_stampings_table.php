@@ -19,9 +19,9 @@ return new class extends Migration
         
         Schema::create('stampings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('stamping_category_id')->constrained()->cascadeOnDelete();
-            $table->string('title');
-            $table->string('image');
+            // $table->foreignId('stamping_category_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->string('title')->nullable();
+            $table->string('image')->nullable();
             $table->string('dimension')->nullable();
             $table->timestamps();
         });

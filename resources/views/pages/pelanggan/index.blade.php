@@ -25,12 +25,13 @@
                     <tr class="hover:bg-gray-50 transition-colors">
                         <td class="px-4 py-3">{{ $index + 1 }}</td>
                         <td class="px-4 py-3">
-                            @if($customer->image)
+                            @if($customer->logo)
                             <img src="{{ asset('storage/' . $customer->logo) }}" alt="{{ $customer->company_name }}"
                                 class="w-16 h-16 object-cover cursor-pointer"
                                 @click="open = true; imgSrc='{{ asset('storage/' . $customer->logo) }}'">
                             @endif
                         </td>
+
                         <td class="px-4 py-3 font-medium">{{ $customer->company_name }}</td>
                     </tr>
                     @endforeach

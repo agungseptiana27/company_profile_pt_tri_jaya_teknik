@@ -67,15 +67,10 @@
                                                 : 'text-[#0D3300] hover:bg-gray-100' }}">
                                     Fabrication
                                 </a>
-
-                                <a href="{{ route('produk.jig') }}"
-                                    class=" block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Jig</a>
                                 <a href="{{ route('produk.machining') }}"
                                     class=" block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Machining</a>
                                 <a href="{{ route('produk.stamping') }}"
                                     class=" block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Stamping</a>
-                                <a href="{{ route('produk.spm') }}"
-                                    class=" block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">SPM</a>
                                 <a href="{{ route('produk.civil') }}"
                                     class=" block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Civil</a>
                             </div>
@@ -206,14 +201,10 @@
                 <div id="mobile-product-dropdown-menu" class="hidden mt-1 space-y-1 pl-4">
                     <a href="{{ route('produk.fabrication') }}"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Fabrication</a>
-                    <a href="{{ route('produk.jig') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Jig</a>
                     <a href="{{ route('produk.machining') }}"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Machining</a>
                     <a href="{{ route('produk.stamping') }}"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Stamping</a>
-                    <a href="{{ route('produk.spm') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">SPM</a>
                     <a href="{{ route('produk.civil') }}"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Civil</a>
                 </div>

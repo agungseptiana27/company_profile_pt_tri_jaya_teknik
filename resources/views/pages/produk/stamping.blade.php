@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Stamping |' .config('app.name'))
+@section('title', 'Stamping | ' . config('app.name'))
 
 @section('content')
 <section class="py-12">
@@ -10,27 +10,19 @@
             Stamping
         </h2>
 
-        <!-- Tab Menu -->
-        <div class="flex mb-10 space-x-2">
-            @foreach ($categoriesStamping as $cat)
-            <a href="{{ route('produk.stamping', ['category' => $cat->id]) }}" class="px-4 py-2 
-                {{ ($selectedCategoryStamping == $cat->id || (!$selectedCategoryStamping && $loop->first))
-                    ? 'font-semibold text-[#0D3300] border-b-2 border-[#0D3300]'
-                    : 'text-gray-600 hover:text-[#0D3300] border-b-2 border-transparent hover:border-[#0D3300]' }}">
-                {{ $cat->name }}
-            </a>
-            @endforeach
-        </div>
-
-
         <!-- Grid Produk -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @forelse ($stamping as $item)
-            <div class="bg-white shadow-md rounded-lg overflow-hidden flex flex-col">
-                <div class="aspect-square">
+            <div class="bg-white shadow-md rounded-lg overflow-hidden flex flex-col transition hover:shadow-lg">
+                <div class="aspect-square bg-gray-100 flex items-center justify-center overflow-hidden">
+                    @if ($item->image)
                     <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}"
                         class="w-full h-full object-cover">
+                    @else
+                    <div class="text-gray-400 text-sm">No Image</div>
+                    @endif
                 </div>
+
                 <div class="p-4 text-justify">
                     <h3 class="font-semibold text-lg text-[#0D3300]">{{ $item->title }}</h3>
 
@@ -38,10 +30,9 @@
                     <p class="text-sm text-gray-600">Dimension: {{ $item->dimension }}</p>
                     @endif
                 </div>
-
             </div>
             @empty
-            <p class="col-span-3 text-center text-gray-500">Belum ada produk untuk kategori ini.</p>
+            <p class="col-span-3 text-center text-gray-500">Belum ada produk stamping saat ini.</p>
             @endforelse
         </div>
 
@@ -51,5 +42,4 @@
         </div>
     </div>
 </section>
-
 @endsection

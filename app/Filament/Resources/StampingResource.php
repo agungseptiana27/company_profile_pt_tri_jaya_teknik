@@ -28,16 +28,10 @@ class StampingResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('stamping_category_id')
-                    ->relationship('category', 'name')
-                    ->required(),
-
                 Forms\Components\TextInput::make('title')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('image')
-                ->image()
-                ->required(),
+                ->image(),
                 Forms\Components\TextInput::make('dimension')
                     ->maxLength(255)
                     ->default(null),
@@ -50,8 +44,6 @@ class StampingResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('category.name')
-                    ->label('kategori'),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('image'),
@@ -79,7 +71,8 @@ class StampingResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array

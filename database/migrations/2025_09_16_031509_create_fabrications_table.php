@@ -13,14 +13,18 @@ return new class extends Migration
     {
         Schema::create('fabrications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('fabrication_category_id')->constrained()->cascadeOnDelete();
-            $table->string('title');
+            $table->foreignId('fabrication_category_id')
+                ->nullable()
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->string('title')->nullable();
             $table->string('material')->nullable();
             $table->string('process')->nullable();
             $table->string('capacity')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
-        });
+});
+
     }
 
     /**

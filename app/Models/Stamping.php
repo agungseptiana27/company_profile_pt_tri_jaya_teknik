@@ -10,15 +10,14 @@ class Stamping extends Model
     use HasFactory;
 
     protected $fillable = [
-        'stamping_category_id',
         'title',
         'image',
         'dimension',  
     ];
 
-    public function category()
-    {
-        return $this->belongsTo(KategoriStamping::class, 'stamping_category_id');
-    }
+    // public function category()
+    // {
+    //     return $this->belongsTo(KategoriStamping::class, 'stamping_category_id');
+    // }
     
 }

@@ -14,9 +14,13 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @forelse ($civil as $item)
             <div class="bg-white shadow-md rounded-lg overflow-hidden flex flex-col">
-                <div class="aspect-square">
+                <div class="aspect-square bg-gray-100 flex items-center justify-center overflow-hidden">
+                    @if ($item->image)
                     <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}"
                         class="w-full h-full object-cover">
+                    @else
+                    <div class="text-gray-400 text-sm">No Image</div>
+                    @endif
                 </div>
                 <div class="p-4 text-justify">
                     <h3 class="font-semibold text-lg text-[#0D3300]">{{ $item->title }}</h3>

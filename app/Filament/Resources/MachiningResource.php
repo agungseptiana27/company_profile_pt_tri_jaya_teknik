@@ -28,7 +28,6 @@ class MachiningResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
-                    ->required()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('image')
                     ->image(),
@@ -63,7 +62,8 @@ class MachiningResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array
